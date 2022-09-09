@@ -66,10 +66,8 @@ function l422y_galleries_post_type()
         if (isset($atts['name'])):
             $gallery_name = $atts['name'];
             if ($post = get_page_by_path($gallery_name, OBJECT, 'l422y_gallery')):
-
-                $fields = get_fields($post);
-
-                foreach ($fields['images'] as $i):
+                $fields = get_fields($post->ID);
+                foreach ($fields['l4g_images'] as $i):
 
                     $val = $i['sizes']['medium_large'] ?: $i['url'];
                     if ($val):
@@ -190,9 +188,9 @@ add_action('acf/init', function () {
         'title' => 'Gallery Images',
         'fields' => array(
             array(
-                'key' => 'images',
+                'key' => 'l4g_images',
 //                'label' => 'Post Format',
-                'name' => 'images',
+                'name' => 'l4g_images',
                 'type' => 'gallery',
                 'layout' => 'horizontal',
             )
