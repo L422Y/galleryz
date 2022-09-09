@@ -107,14 +107,16 @@ function l422y_galleries_post_type()
                 let images_<?php echo $gallery_id ?>=<?php echo json_encode($ag_images, JSON_UNESCAPED_SLASHES) ?>;
                 let currentImage_<?php echo $gallery_id ?> = <?php echo json_encode($ag_images[0], JSON_UNESCAPED_SLASHES) ?>
             </script>
-
             <div class="l422y-gallery <?php echo !empty($atts['thumbs']) ? 'thumbs' : 'nothumbs' ?> fit-<?php echo $fitmode ?>"
                  id="<?php echo $gallery_id ?>"
                  v-cloak
+                <?php echo isset($atts['height']) ? "style='height: {$atts['height']};max-height: {$atts['height']};'" : "" ?>
                  v-scope="{ images_<?php echo $gallery_id ?>, currentImage_<?php echo $gallery_id ?>  }"
                  @vue:mounted="ag_mounted($el,'<?php echo $gallery_id ?>')"
             >
-                <div class="preview">
+                <div class="preview"
+                    <?php echo isset($atts['height']) ? "style='height: {$atts['height']};max-height: {$atts['height']};'" : "" ?>
+                >
                     <picture>
                         <img :src="currentImage_<?php echo $gallery_id ?>.src" class="bg" alt="">
                         <img :src="currentImage_<?php echo $gallery_id ?>.src" alt=""
