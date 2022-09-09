@@ -238,7 +238,8 @@ function l422y_galleries_footer()
                 <img :src="store.fullGalleryItems[0]?.src" alt="">
             </picture>
 
-            <div class="lg-caption" v-if="store.fullGalleryCurrentItem?.caption" v-html="store.fullGalleryCurrentItem?.caption"></div>
+            <div class="lg-caption" v-if="store.fullGalleryCurrentItem?.caption"
+                 v-html="store.fullGalleryCurrentItem?.caption"></div>
             <nav>
                 <i class="prev"
                    @click="store.fullGalleryCurrentItem=fgPrev(store.fullGalleryItems,store.fullGalleryCurrentItem)">
@@ -262,7 +263,10 @@ function l422y_galleries_footer()
             </div>
         </div>
     </div>
+
     <script type="module">
+        document.querySelector('body').setAttribute('v-scope', '')
+
         import {createApp, reactive} from 'https://unpkg.com/petite-vue?module'
 
         const store = reactive({
@@ -279,7 +283,7 @@ function l422y_galleries_footer()
         window.store = store
 
         document.body.addEventListener('keyup', (ev) => {
-            if (ev.key === 'Escape' && store.fullGalleryItems?.length>0) {
+            if (ev.key === 'Escape' && store.fullGalleryItems?.length > 0) {
                 ev.preventDefault()
                 store.unsetfullGalleryItems();
                 return false
